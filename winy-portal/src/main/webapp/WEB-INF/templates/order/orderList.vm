@@ -1,0 +1,49 @@
+<html>
+<body>
+
+
+<table border="1">
+    #foreach($ret in ${responseVO.result})
+        <tr>
+            <td>$!{ret.id}</td>
+            <td>${ret.orderNo}</td>
+            <td>$!dateTool.format('yyyy-MM-dd hh mm ss',${ret.createTime})</td>
+            <td>
+
+            #if(${ret.status} == 0)
+                已提交
+            #elseif(${ret.status} == 1)
+                待支付
+            #elseif(${ret.status} == 2)
+                已支付
+            #elseif(${ret.status} == 3)
+                已失效
+            #end
+
+            </td>
+
+            <td>
+                <input type="button" value="支付" onclick="doPay($!{ret.id})"/>
+
+            </td>
+
+        </tr>
+    #end
+
+</table>
+
+
+</body>
+
+<script type="text/javascript">
+
+    function doPay(id) {
+
+        alert(id);
+
+    }
+
+</script>
+
+
+</html>

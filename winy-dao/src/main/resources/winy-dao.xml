@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+
+    <!--引入数据库配置项-->
+    <context:property-placeholder location="classpath:db.properties"/>
+
+
+    <!-- 引入统计拦截功能 -->
+    <bean id="statFilter" class="com.alibaba.druid.filter.stat.StatFilter">
+        <property name="slowSqlMillis" value="1000"/>
+        <property name="logSlowSql" value="true"/>
+    </bean>
+
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <property name="url" value="${winy_jdbc_url}"/>
+        <property name="username" value="${winy_jdbc_username}"/>
+        <property name="password" value="${winy_jdbc_password}"/>
+        <!-- 连接池最大使用连接数 -->
+        <property name="maxActive" value="${winy_maxActive}"/>
+        <!-- 初始化连接大小 -->
+        <property name="initialSize" value="${winy_initialSize}"/>
+        <!-- 获取连接最大等待时间 -->
+        <property name="maxWait" value="${winy_maxWait}"/>
+        <!-- 连接池最小空闲 -->
+        <property name="minIdle" value="${winy_minIdle}"/>
+        <property name="testOnBorrow" value="${winy_testOnBorrow}"/>
+        <property name="testOnReturn" value="${winy_testOnReturn}"/>
+        <property name="testWhileIdle" value="${winy_testWhileIdle}"/>
+        <!-- 自动清除无用连接 -->
+        <property name="removeAbandoned" value="${winy_removeAbandoned}"/>
+        <!-- 清除无用连接的等待时间 -->
+        <property name="removeAbandonedTimeout" value="${winy_removeAbandonedTimeout}"/>
+        <!-- 关闭Abandoned连接时输出错误日志 -->
+        <property name="logAbandoned" value="${winy_logAbandoned}"/>
+        <!-- 连接属性 -->
+        <property name="connectionProperties" value="${winy_connectionProperties}"/>
+        <!-- 配置监控统计拦截的filters -->
+        <property name="filters" value="${winy_filters}"/>
+        <property name="proxyFilters">
+            <list>
+                <ref bean="statFilter"/>
+            </list>
+        </property>
+
+    </bean>
+
+
+    <!-- 自动扫描mapper.xml文件 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mapperLocations">
+            <list>
+                <value>classpath:mapper/*.xml</value>
+            </list>
+        </property>
+        <!--mybatis自定义配置-->
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+
+        <!--自动别名配置，比如类名叫DemoPO，那么别名就自动配置为demoPO-->
+        <property name="typeAliasesPackage" value="com.winy.model"/>
+    </bean>
+
+
+
+    <!-- 自动扫描com.winy.dao下的所有dao接口，并实现这些接口，可直接在程序中使用dao接口，不用再获取sqlsession对象 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+
+        <!-- basePackage 属性是映射器接口文件的包路径。你可以使用分号或逗号 作为分隔符设置多于一个的包路径 -->
+        <property name="basePackage" value="com.winy.dao"/>
+        <!-- 因为会自动装配 SqlSessionFactory和SqlSessionTemplate
+                 所以没 有 必 要 去 指 定 SqlSessionFactory或 SqlSessionTemplate
+                 因此可省略不配置；
+                 但是,如果你使 用了一个 以上的 DataSource，那么自动装配可能会失效。
+                 这种 情况下，你可以使用sqlSessionFactoryBeanName或sqlSessionTemplateBeanName属性来设置正确的 bean名称来使用；-->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+
+</beans>

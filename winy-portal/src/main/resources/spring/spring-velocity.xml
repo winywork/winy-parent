@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!-- velocity环境配置 -->
+    <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+        <!-- velocity模板路径 -->
+        <property name="resourceLoaderPath" value="/WEB-INF/templates/"/>
+        <property name="velocityProperties">
+            <props>
+                <!--解决vm页面中文乱码-->
+                <prop key="input.encoding">UTF-8</prop>
+                <prop key="output.encoding">UTF-8</prop>
+
+            </props>
+        </property>
+    </bean>
+
+    <!-- velocity视图解析器 -->
+    <bean id="velocityViewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+        <property name="contentType" value="text/html;charset=UTF-8"/>
+        <property name="cache" value="true"/>
+        <property name="suffix" value=".vm"/>
+        <property name="exposeSpringMacroHelpers" value="true" /><!--是否使用spring对宏定义的支持-->
+        <property name="exposeSessionAttributes" value="true" /><!--是否开放request属性-->
+        <property name="requestContextAttribute" value="request"/><!--request属性引用名称-->
+        <property name="dateToolAttribute" value="dateTool"/>
+        <property name="numberToolAttribute" value="numberTool"/>
+    </bean>
+
+</beans>

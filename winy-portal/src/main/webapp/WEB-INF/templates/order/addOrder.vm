@@ -1,0 +1,13 @@
+<html xmlns="http://www.w3.org/1999/html">
+<body>
+
+
+<form action="/order/save" METHOD="post">
+    订单编号：<input type="text" name="orderNo" id="orderNo"/></br>
+
+    <input type="submit" value="提交"/>
+
+</form>
+
+
+</html>

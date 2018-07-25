@@ -1,0 +1,70 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+
+  <!--自定义servlet-->
+  <!--<servlet>
+    <servlet-name>winy-servlet</servlet-name>
+    <servlet-class>com.winy.servlet.WinyServlet</servlet-class>
+
+    &lt;!&ndash; 大于等于0，启动服务即执行自定义servlet init初始化方法，小于0或者不设置，请求到了才会执行 &ndash;&gt;
+    &lt;!&ndash; 如果多个servlet的场合，数字设定大小，小的先执行(优先级越高)，比如1会比2先执行 &ndash;&gt;
+    <load-on-startup>-1</load-on-startup>
+  </servlet>
+  
+  <servlet-mapping>
+    &lt;!&ndash; 和上面servlet-name 必须一致 &ndash;&gt;
+    <servlet-name>winy-servlet</servlet-name>
+    <url-pattern>/*</url-pattern>
+  </servlet-mapping>-->
+  
+  <!--spring配置-->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:spring/spring-context.xml</param-value>
+  </context-param>
+
+  <!--中文乱码处理-->
+  <!--<filter>
+    <filter-name>encodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>utf-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>encodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>-->
+  
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
+  <!--spring-mvc配置-->
+  <servlet>
+    <servlet-name>springmvc</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:spring/spring-mvc.xml</param-value>
+    </init-param>
+
+    <!--启动时加载，位置必须在init-param之后-->
+    <load-on-startup>1</load-on-startup>
+
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>springmvc</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+
+
+
+</web-app>

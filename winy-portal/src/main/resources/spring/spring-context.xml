@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--基本包扫描 只扫描controller以外的包，controller由springmvc扫描-->
+    <context:component-scan base-package="com.winy">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+
+    <!--启用注解-->
+    <!--<context:annotation-config/>-->
+
+
+    <!--dao层配置单独拉出来-->
+    <import resource="classpath:winy-dao.xml"/>
+
+    <!--支持rabbitmq-->
+    <import resource="classpath:winy-rabbitmq.xml"/>
+
+
+</beans>

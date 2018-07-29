@@ -1,4 +1,4 @@
-package com.rabbitmq.init;
+package com.winy.rabbitmq.init;
 
 import com.rabbitmq.client.Address;
 import org.springframework.beans.factory.InitializingBean;

@@ -1,5 +1,10 @@
 <html>
+
+
+<script src="/static/js/jquery.min.js" type="text/javascript"></script>
+
 <body>
+
 
 
 <table border="1">
@@ -11,19 +16,18 @@
             <td>
 
             #if(${ret.status} == 0)
-                已提交
-            #elseif(${ret.status} == 1)
                 待支付
-            #elseif(${ret.status} == 2)
+            #elseif(${ret.status} == 1)
                 已支付
-            #elseif(${ret.status} == 3)
+            #elseif(${ret.status} == 2)
                 已失效
             #end
-
             </td>
-
             <td>
-                <input type="button" value="支付" onclick="doPay($!{ret.id})"/>
+
+                #if(${ret.status} == 0)
+                    <input type="button" value="支付" onclick="doPay($!{ret.id})"/>
+                #end
 
             </td>
 
@@ -35,11 +39,37 @@
 
 </body>
 
+
+
+
 <script type="text/javascript">
 
+    /*$(function(){
+        alert("JQuery已引用成功！");
+    });
+
+*/
+
+    // 支付
     function doPay(id) {
 
         alert(id);
+
+        $.ajax({
+            url: "/order/doPay",
+            data:{"id":id},
+            dataType:"json",
+            contentType:"application/json",
+            success: function(data){
+
+                if (data.code== 0) {
+
+                    alert("支付成功");
+                } else {
+                    alert("支付失败");
+                }
+            }
+        })
 
     }
 

@@ -11,7 +11,7 @@
     <context:property-placeholder location="classpath:winy-rabbitmq.properties"/>
 
     <!--配置项初始化-->
-    <bean id="rabbitMQConfiguration" class="com.rabbitmq.init.RabbitMQConfiguration"/>
+    <bean id="rabbitMQConfiguration" class="com.winy.rabbitmq.init.RabbitMQConfiguration"/>
 
 
 </beans>

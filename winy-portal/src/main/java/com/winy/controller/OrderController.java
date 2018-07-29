@@ -6,6 +6,7 @@ import com.winy.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -34,7 +35,8 @@ public class OrderController {
     }
 
     /**
-     * 订单保存后跳转到订单列表页面
+     * 1. 订单保存后跳转到订单列表页面
+     * 2. 订单30分钟未支付，则取消订单
      * @param orderVO
      * @return
      */
@@ -65,5 +67,23 @@ public class OrderController {
 
         return mv;
     }
+
+    /**
+     * 订单支付
+     * @return
+     */
+    @RequestMapping("/doPay")
+    @ResponseBody
+    public ResponseVO doPay(int id) {
+
+        orderService.doPay(id);
+
+        ResponseVO responseVO = ResponseVO.getInstance();
+
+        return responseVO;
+    }
+
+
+
 
 }

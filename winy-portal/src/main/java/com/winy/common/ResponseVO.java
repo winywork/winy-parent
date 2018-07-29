@@ -1,12 +1,14 @@
 package com.winy.common;
 
+import java.io.Serializable;
+
 /**
  * 描述：通用返回对象
  *
  * @author winy
  * @create_time 2018-07-13 14:27
  */
-public class ResponseVO<T> {
+public class ResponseVO<T> implements Serializable{
 
     // 状态 0,正常  -1 其他
     private int code = 0;

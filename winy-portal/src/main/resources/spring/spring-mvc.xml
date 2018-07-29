@@ -2,16 +2,21 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context.xsd">
+       http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!--基本包扫描 mvc只扫描controller-->
     <context:component-scan base-package="com.winy.controller"/>
 
     <!--引入velocity-->
     <import resource="spring-velocity.xml"/>
+
+    <!-- 对静态资源文件的访问 -->
+    <mvc:annotation-driven/><!-- 自动注册组件 -->
+    <mvc:resources mapping="/static/**" location="/static/" />
 
     <!--配置jsp视图解析器-->
     <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

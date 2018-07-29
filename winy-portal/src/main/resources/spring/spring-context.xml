@@ -23,5 +23,4 @@
     <!--支持rabbitmq-->
     <import resource="classpath:winy-rabbitmq.xml"/>
 
-
 </beans>

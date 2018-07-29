@@ -12,10 +12,16 @@ import java.util.List;
  */
 public interface OrderDao {
 
-    void save(OrderPO orderPO);
+    int save(OrderPO orderPO);
 
     OrderPO searchOrder(String orderNo);
 
     List searchOrderAll();
+
+    void dopay(int id);
+
+    OrderPO searchOrderById(int id);
+
+    void updateOrderById(int id);
 
 }

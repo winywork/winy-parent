@@ -1,13 +1,13 @@
-package com.rabbitmq.init;
-
-import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
+package com.winy.rabbitmq.init;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
+
 /**
- * 描述：
+ * 描述：配置信息初始化
  *
  * @author winy
  * @create_time 2018-07-24 13:30

@@ -2,18 +2,31 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.winy.dao.OrderDao">
 
-    <insert id="save" parameterType="orderPO">
+    <insert id="save" parameterType="orderPO" keyProperty="id" useGeneratedKeys="true">
         INSERT INTO
         tb_order(order_no,create_time,status)
         VALUES (#{orderNo},#{createTime},0);
-
     </insert>
 
     <select id="searchOrderAll" resultType="orderPO">
         SELECT * from tb_order;
-
-
     </select>
+
+
+    <update id="dopay" parameterType="java.lang.Integer">
+        UPDATE tb_order SET  status=1 WHERE id = #{id};
+
+    </update>
+
+
+    <select id="searchOrderById" resultType="orderPO" parameterType="java.lang.Integer">
+        SELECT * from tb_order WHERE id = #{id};
+    </select>
+
+    <update id="updateOrderById" parameterType="java.lang.Integer">
+        UPDATE tb_order SET  status=2 WHERE id = #{id};
+
+    </update>
 
 
 </mapper>

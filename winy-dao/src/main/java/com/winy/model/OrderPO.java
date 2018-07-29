@@ -16,7 +16,7 @@ public class OrderPO {
 
     private Date createTime;
 
-    // 订单状态  '0 已提交  1 待支付 2  已支付 3  已失效'
+    // 订单状态  '0 待支付  1 已支付  2 已失效'
     private int status;
 
     public int getId() {

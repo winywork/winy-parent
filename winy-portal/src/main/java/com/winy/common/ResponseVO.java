@@ -6,7 +6,6 @@ import java.io.Serializable;
  * 描述：通用返回对象
  *
  * @author winy
- * @create_time 2018-07-13 14:27
  */
 public class ResponseVO<T> implements Serializable{
 

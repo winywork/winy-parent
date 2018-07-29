@@ -4,7 +4,6 @@ package com.winy.rabbitmq;
  * 描述：消息发送接口
  *
  * @author winy
- * @create_time 2018-07-14 16:52
  */
 public interface MqSenderFacade {
 

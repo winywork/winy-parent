@@ -4,7 +4,6 @@ package com.winy.model;
  * 描述：
  *
  * @author winy
- * @create_time 2018-07-11 10:09
  */
 public class OrderVO {
 

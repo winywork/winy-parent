@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
  * 描述：
  *
  * @author winy
- * @create_time 2018-07-10 16:16
  */
 public class WinyServlet extends HttpServlet {
 

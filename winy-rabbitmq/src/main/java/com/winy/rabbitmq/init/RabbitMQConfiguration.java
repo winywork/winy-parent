@@ -12,7 +12,6 @@ import java.util.regex.Pattern;
  * 描述：启动的时候自动加载rabbitmq配置，获取连接
  *
  * @author winy
- * @create_time 2018-07-24 13:12
  */
 public class RabbitMQConfiguration implements InitializingBean{
 

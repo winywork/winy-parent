@@ -3,8 +3,7 @@ package com.winy.rabbitmq.constants;
 /**
  * 描述：消息队列常量
  *
- * @author liuming
- * @create_time 2018-07-26 17:27
+ * @author winy
  */
 public class MQConstant {
 

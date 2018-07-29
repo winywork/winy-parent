@@ -16,7 +16,6 @@ import com.winy.rabbitmq.init.RabbitConnectionFactory;
  * 描述：消息发送实现类
  *
  * @author winy
- * @create_time 2018-07-14 16:53
  */
 @Service
 public class MqSenderFacadeImpl implements MqSenderFacade {

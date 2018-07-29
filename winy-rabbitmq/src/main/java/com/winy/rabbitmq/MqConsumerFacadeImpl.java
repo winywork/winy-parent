@@ -18,7 +18,6 @@ import com.winy.rabbitmq.init.RabbitConnectionFactory;
  * 描述：消息消费实现类
  *
  * @author winy
- * @create_time 2018-07-14 16:53
  */
 @Service
 public class MqConsumerFacadeImpl implements MqConsumerFacade {

@@ -6,7 +6,6 @@ import java.util.Date;
  * 描述：
  *
  * @author winy
- * @create_time 2018-07-12 13:40
  */
 public class OrderPO {
 

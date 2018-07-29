@@ -11,7 +11,6 @@ import com.winy.rabbitmq.constants.MQConstant;
  * 描述：订单相关消息消费实现类(系统启动时即执行)
  *
  * @author winy
- * @create_time 2018-07-24 14:09
  */
 @Component
 public class OrderMqConsumer extends StartResourceBoot{

@@ -3,8 +3,7 @@ package com.winy.rabbitmq;
 /**
  * 描述：接收消息处理接口
  *
- * @author liuming
- * @create_time 2018-07-28 21:05
+ * @author winy
  */
 public interface MessageReceiver {
 

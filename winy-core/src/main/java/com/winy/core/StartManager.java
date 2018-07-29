@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
  * 描述：spring ApplicationListener
  *
  * @author winy
- * @create_time 2018-07-23 19:30
  */
 @Service
 public class StartManager implements ApplicationListener<ContextRefreshedEvent>{

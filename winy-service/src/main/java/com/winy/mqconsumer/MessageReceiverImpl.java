@@ -14,8 +14,7 @@ import java.util.concurrent.Executors;
 /**
  * 描述：消息具体实现类
  *
- * @author liuming
- * @create_time 2018-07-29 14:28
+ * @author winy
  */
 @Service
 public class MessageReceiverImpl  implements MessageReceiver {

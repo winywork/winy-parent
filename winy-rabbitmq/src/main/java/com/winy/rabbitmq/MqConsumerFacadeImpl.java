@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.concurrent.TimeoutException;
 
 import com.winy.rabbitmq.constants.MQConstant;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.rabbitmq.client.AMQP;
@@ -21,6 +23,9 @@ import com.winy.rabbitmq.init.RabbitConnectionFactory;
  */
 @Service
 public class MqConsumerFacadeImpl implements MqConsumerFacade {
+
+    private static Logger logger = LoggerFactory.getLogger(MqConsumerFacadeImpl.class);
+
 
     // 通道
     private  Channel channel;
@@ -60,7 +65,7 @@ public class MqConsumerFacadeImpl implements MqConsumerFacade {
                 public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
                     String msg = new String(body);
 
-                    System.out.println("接收到的消息：" + msg + "-----接收时间：" + new Date());
+                    logger.info("接收到的消息：" + msg + "-----接收时间：" + new Date());
 
                     // 消息具体处理
                     messageReceiver.doReceiveMsg(msg);

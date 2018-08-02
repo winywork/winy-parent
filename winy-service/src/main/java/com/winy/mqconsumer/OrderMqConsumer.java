@@ -1,5 +1,8 @@
 package com.winy.mqconsumer;
 
+import com.winy.rabbitmq.MqSenderFacadeImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +18,9 @@ import com.winy.rabbitmq.constants.MQConstant;
 @Component
 public class OrderMqConsumer extends StartResourceBoot{
 
+    Logger logger = LoggerFactory.getLogger(OrderMqConsumer.class);
+
+
     @Autowired
     private MqConsumerFacade mqConsumerFacade;
 
@@ -25,7 +31,7 @@ public class OrderMqConsumer extends StartResourceBoot{
     @Override
     protected void start_run() {
 
-        System.out.println("mqconsumer start_run*********");
+        logger.info("mqconsumer start_run*********");
 
         mqConsumerFacade.acceptMsg(MQConstant.ORDER_LIVE_EXCHANGE,MQConstant.ORDER_LIVE_QUEUE,new MessageReceiverImpl());
 

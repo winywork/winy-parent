@@ -47,4 +47,14 @@ public class OrderVO {
     public void setStatus(int status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "OrderVO{" +
+                "id=" + id +
+                ", orderNo='" + orderNo + '\'' +
+                ", createTime='" + createTime + '\'' +
+                ", status=" + status +
+                '}';
+    }
 }

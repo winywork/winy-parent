@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeoutException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.rabbitmq.client.Channel;
@@ -19,6 +21,9 @@ import com.winy.rabbitmq.init.RabbitConnectionFactory;
  */
 @Service
 public class MqSenderFacadeImpl implements MqSenderFacade {
+
+
+    Logger logger = LoggerFactory.getLogger(MqSenderFacadeImpl.class);
 
     // 通道
     private  Channel channel;
@@ -46,7 +51,7 @@ public class MqSenderFacadeImpl implements MqSenderFacade {
 
             channel.basicPublish(exchange,"",null,msg.getBytes("utf-8"));
 
-            System.out.println("已发送消息：" + msg);
+            logger.info("已发送消息：" + msg);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -94,7 +99,7 @@ public class MqSenderFacadeImpl implements MqSenderFacade {
             // 消息发送
             channel.basicPublish(deadexchange,"",null,msg.getBytes("utf-8"));
 
-            System.out.println("已发送消息：" + msg + "-----发送时间：" + new Date());
+            logger.info("已发送消息：" + msg + "-----发送时间：" + new Date());
 
         } catch (IOException e) {
             e.printStackTrace();

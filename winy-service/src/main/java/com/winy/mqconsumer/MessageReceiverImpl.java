@@ -1,15 +1,18 @@
 package com.winy.mqconsumer;
 
+import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.winy.dao.OrderDao;
 import com.winy.model.OrderPO;
 import com.winy.rabbitmq.MessageReceiver;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.io.IOException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * 描述：消息具体实现类
@@ -22,6 +25,9 @@ public class MessageReceiverImpl  implements MessageReceiver {
     @Autowired
     private OrderDao orderDao;
 
+    private static Logger logger = LoggerFactory.getLogger(MessageReceiverImpl.class);
+
+
     /**
      * 判断是否已支付,如果还是待支付，则更新为已失效
      *
@@ -30,7 +36,7 @@ public class MessageReceiverImpl  implements MessageReceiver {
     @Override
     public void doReceiveMsg(String msg) {
 
-        System.out.println("doReceiveMsg:"+msg);
+        logger.info("doReceiveMsg:"+msg);
 
         ExecutorService executorService = Executors.newCachedThreadPool();
 

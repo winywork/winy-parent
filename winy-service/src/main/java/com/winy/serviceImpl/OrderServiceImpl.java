@@ -3,12 +3,15 @@ package com.winy.serviceImpl;
 import com.alibaba.druid.support.json.JSONUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.winy.mqconsumer.OrderMqConsumer;
 import com.winy.rabbitmq.MqSenderFacade;
 import com.winy.rabbitmq.constants.MQConstant;
 import com.winy.dao.OrderDao;
 import com.winy.model.OrderPO;
 import com.winy.model.OrderVO;
 import com.winy.service.OrderService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +25,9 @@ import java.util.List;
  */
 @Service
 public class OrderServiceImpl implements OrderService{
+
+    Logger logger = LoggerFactory.getLogger(OrderServiceImpl.class);
+
 
     @Autowired
     private OrderDao orderDao;
@@ -49,7 +55,7 @@ public class OrderServiceImpl implements OrderService{
             ObjectMapper objectMapper = new ObjectMapper();
             String msg = objectMapper.writeValueAsString(po);
 
-            System.out.println(msg);
+            logger.info(msg);
 
             // 2. 发送30分钟失效消息
             mqSenderFacade.sendTTLMsg(MQConstant.ORDER_DEAD_EXCHANGE,MQConstant.ORDER_LIVE_EXCHANGE,MQConstant.ORDER_DEAD_QUEUE,
@@ -77,8 +83,11 @@ public class OrderServiceImpl implements OrderService{
 
         try {
 
+            logger.info(String.valueOf(id));
+
             orderDao.dopay(id);
-            System.out.println("支付成功");
+
+            logger.info("支付成功");
 
         }catch (Exception ex) {
             ex.printStackTrace();

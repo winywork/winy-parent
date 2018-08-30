@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+    <!--基本包扫描 -->
+    <context:component-scan base-package="com.winy"/>
+
+    <!--引用配置项 -->
+    <context:property-placeholder location="dubbo-provider.properties"/>
+
+
+    <!-- 应用名称 -->
+    <dubbo:application name="${dubbo.application}"/>
+    <!-- 注册中心 -->
+    <dubbo:registry address="${dubbo.registry}"/>
+    <!-- dubbo协议端口 -->
+    <dubbo:protocol name="dubbo" port="${dubbo.protocol}"/>
+
+
+    <!-- 声明orderFacade服务 -->
+    <bean id="orderFacade" class="com.winy.dubbo.facade.impl.order.OrderFacadeImpl"/>
+    <dubbo:service interface="com.winy.dubbo.facade.OrderFacade" ref="orderFacade"/>
+
+    <!-- 声明payFacade服务 -->
+    <bean id="payFacade" class="com.winy.dubbo.facade.impl.order.PayFacadeImpl"/>
+    <dubbo:service interface="com.winy.dubbo.facade.PayFacade" ref="payFacade"/>
+
+
+    <!-- 注解配置加载暴露服务提供者 -->
+    <!--<dubbo:annotation/>
+    <context:component-scan base-package="com.winy.dubbo.facade.impl.order">
+        <context:include-filter type="annotation" expression="com.alibaba.dubbo.config.annotation.Service"/>
+        <context:include-filter type="regex" expression="com\.winy\.dubbo\.facade\.impl\.*\.*"/>
+    </context:component-scan>-->
+
+</beans>

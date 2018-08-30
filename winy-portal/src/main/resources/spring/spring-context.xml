@@ -13,8 +13,8 @@
     </context:component-scan>
 
 
-    <!--启用注解-->
-    <!--<context:annotation-config/>-->
+    <!--加载所有配置文件-->
+    <context:property-placeholder location="classpath*:*.properties"/>
 
 
     <!--dao层配置单独拉出来-->
@@ -22,5 +22,8 @@
 
     <!--支持rabbitmq-->
     <import resource="classpath:winy-rabbitmq.xml"/>
+
+    <!--加载dubbo-->
+    <import resource="classpath:spring-dubbo-consumer.xml"/>
 
 </beans>

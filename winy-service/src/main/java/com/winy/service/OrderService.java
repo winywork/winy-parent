@@ -18,12 +18,30 @@ public interface OrderService {
      */
     void save(OrderVO orderVO);
 
+    /**
+     * 根据订单号查询订单
+     * @param orderNo
+     * @return
+     */
     OrderVO searchOrder(String orderNo);
 
+    /**
+     * 查询所有订单
+     * @return
+     */
     List searchOrderAll();
 
-
+    /**
+     * 订单支付
+     * @param id
+     */
     void doPay(int id);
+
+    /**
+     * 取消订单
+     * @param id
+     */
+    void doCancelOrder(int id);
 
 
 }

@@ -90,6 +90,22 @@ public class OrderController {
     }
 
 
+    /**
+     * 订单取消(dubbo集成)
+     * @return
+     */
+    @RequestMapping("/doCancelOrder")
+    @ResponseBody
+    public ResponseVO doCancelOrder(int id) {
+
+        orderService.doCancelOrder(id);
+
+        ResponseVO responseVO = ResponseVO.getInstance();
+
+        return responseVO;
+    }
+
+
 
 
 }

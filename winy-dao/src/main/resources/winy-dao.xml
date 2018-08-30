@@ -9,7 +9,7 @@
 
 
     <!--引入数据库配置项-->
-    <context:property-placeholder location="classpath:db.properties"/>
+    <!--<context:property-placeholder location="classpath:db.properties"/>-->
 
 
     <!-- 引入统计拦截功能 -->

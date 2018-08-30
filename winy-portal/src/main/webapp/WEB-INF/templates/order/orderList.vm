@@ -27,6 +27,7 @@
 
                 #if(${ret.status} == 0)
                     <input type="button" value="支付" onclick="doPay($!{ret.id})"/>
+                    <input type="button" value="取消订单" onclick="doCancelOrder($!{ret.id})"/>
                 #end
 
             </td>
@@ -44,12 +45,6 @@
 
 <script type="text/javascript">
 
-    /*$(function(){
-        alert("JQuery已引用成功！");
-    });
-
-*/
-
     // 支付
     function doPay(id) {
 
@@ -57,6 +52,29 @@
 
         $.ajax({
             url: "/order/doPay",
+            data:{"id":id},
+            dataType:"json",
+            contentType:"application/json",
+            success: function(data){
+
+                if (data.code== 0) {
+
+                    alert("支付成功");
+                } else {
+                    alert("支付失败");
+                }
+            }
+        })
+    }
+
+
+    // 取消订单
+    function doCancelOrder(id) {
+
+        alert(id);
+
+        $.ajax({
+            url: "/order/doCancelOrder",
             data:{"id":id},
             dataType:"json",
             contentType:"application/json",

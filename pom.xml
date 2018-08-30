@@ -13,6 +13,8 @@
         <module>winy-dao</module>
         <module>winy-rabbitmq</module>
         <module>winy-core</module>
+        <module>winy-dubbo-facade</module>
+        <module>winy-dubbo-facade-impl</module>
     </modules>
     <packaging>pom</packaging>
 

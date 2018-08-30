@@ -10,17 +10,19 @@
 基础技术选型: spring springmvc velocity mybatis rabbitmq jackson redis dubbo elasticsearch logback 等等。
 
 框架各模块说明：
+
 winy-parent：父工程
-
 winy-portal : mvc层，web， dubbo消费者
-
 winy-service: 业务处理层
-
 winy-core: 核心层
 winy-dao: model数据处理层
+
 winy-rabbitmq: 消息层
+
 winy-dubbo-facade: dubbo接口
+
 winy-dubbo-facade-impl： dubbo服务提供者
+
 
 
 当前程序初始入口：

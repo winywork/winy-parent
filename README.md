@@ -11,12 +11,25 @@
 
 框架各模块说明：
 
-winy-portal : mvc层，web
+winy-parent：父工程
+
+winy-portal : mvc层，web， dubbo消费者
+
 winy-service: 业务处理层
+
 winy-core: 核心层
-winy-dao: model数据处理层
+
+winy-dao: model数据处理层(mybatis)
+
 winy-rabbitmq: 消息层
 
+winy-dubbo-facade: dubbo接口
+
+winy-dubbo-facade-impl： dubbo服务提供者
 
 当前程序初始入口：
 http://localhost:8888/order/toOrderPage
+
+winy-portal 工程中：
+1. 新增订单操作中  包含了rabbitmq死信队列的操作(一段时间后未支付订单取消)
+2. 取消订单操作中  包含了dubbo服务的实现

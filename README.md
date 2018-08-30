@@ -11,8 +11,11 @@
 
 框架各模块说明：
 winy-parent：父工程
+
 winy-portal : mvc层，web， dubbo消费者
+
 winy-service: 业务处理层
+
 winy-core: 核心层
 winy-dao: model数据处理层
 winy-rabbitmq: 消息层
